@@ -40,7 +40,7 @@ while True:
         lista_estudiantes.append(estudiante)
         print("estudiante registrado correctamente")
     
-    elif opcion == 2
+    elif opcion == 2:
         numero_estudiantes = len(lista_estudiantes)
         print("El numero de estudiantes es ", numero_estudiantes)
         for estudiante in lista_estudiantes:
