@@ -16,6 +16,7 @@ class Estudiante:
     def calcular_prom(self):
         promedio = (self.nota1 + self.nota2 + self.nota3) / 3
         return promedio
+    
 print("Bienvenido al sistema de gestion de estudiantes")
 lista_estudiantes = []
 while True:
@@ -45,7 +46,7 @@ while True:
         print("El numero de estudiantes es ", numero_estudiantes)
         for estudiante in lista_estudiantes:
             print("El promedio del estudiante es ", estudiante.nombre)
-            print("El promedio del estudiante es ", estudiante.calcular_prom)
+            print("El promedio del estudiante es ", estudiante.calcular_prom())
     elif opcion == 0:
         print("Hasta luego")
         break

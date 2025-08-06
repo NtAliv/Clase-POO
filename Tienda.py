@@ -1,16 +1,21 @@
 class Tienda:
-    def _init_(self, nombre, precio, cantidad):
+    def __init__(self, nombre, precio, cantidad, codigo):
         self.nombre = nombre
         self.precio = precio
         self.cantidad = cantidad
+        self.codigo = codigo
     
     def vender(self, cantidad_vendida):
         if cantidad_vendida <= cantidad:
             self.cantidad -= cantidad_vendida
+            print("producto vendido con exito")
         else:
             print("no tenemos suficiente material")
-print("Bienvenido a nuestra tienda")
+
+
 lista_tienda = []
+
+print("Bienvenido a nuestra tienda")
 
 while True:
 
@@ -20,15 +25,18 @@ while True:
     print("3. Mercar")
     print("0. Salir")
     opcion = int(input())
+
     if opcion == 1:
+
         print("Ingrese el nombre del producto: ")
         nombre = input()
         print("Ingrese la cantidad del producto: ")
         cantidad = int(input())
         print("Ingrese el precio: ")
         precio  = float(input())
+        codigo = int(input("ingrese el codigo: "))
 
-        tienda  = Tienda(nombre, cantidad, precio)
+        tienda  = Tienda(nombre, cantidad, precio, codigo)
         lista_tienda.append(tienda)
         print("mercancia entregada correctamente")
     
@@ -40,13 +48,22 @@ while True:
             print("Nombre - Precio - Cantidad")
             print(tienda.nombre, "-", tienda.precio, "-", tienda.cantidad)
     elif opcion == 3:
-        print("ingrese el material a comprar")
-        merca = input()
-        if tienda.nombre.lower() == merca.lower():
-            cantidad = int(input("ingrese cuanta cantidad quiere: "))
-            tienda.vender(cantidad)
-        else:
-            ("no se encontro el producto")
+        codigo_producto = int(input("ingrese el codigo del producto que quiere vender"))
+        
+        existe = False
+        for producto in lista_tienda:
+            if tienda.codigo == codigo_producto:
+                cantidad_venta = int(input("cuanto desea vender: "))
+                tienda.vender(cantidad_venta)
+                existe = True
+                break
+
+        if existe == False:
+            print("producto no existente..")
+
+    elif opcion == 0:
+        print("hasta luego")
         break
+
     else:
         print("opcion no valida")
