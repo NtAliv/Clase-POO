@@ -1,16 +1,16 @@
 class Tienda:
-    def __init__(self, nombre, precio, cantidad, codigo):
+    def __init__(self, nombre, precio, codigo):
         self.nombre = nombre
         self.precio = precio
-        self.cantidad = cantidad
         self.codigo = codigo
     
-    def vender(self, cantidad_vendida):
-        if cantidad_vendida <= cantidad:
-            self.cantidad -= cantidad_vendida
+    def vender(self, presupuesto_usuario):
+        if presupuesto_usuario > precio:
+            presupuesto_usuario -= self.precio
             print("producto vendido con exito")
+            print("te devolvemos ", f"{presupuesto_usuario:.0f}", "$ pesos")
         else:
-            print("no tenemos suficiente material")
+            print("no tienes suficiente dinero")
 
 
 lista_tienda = []
@@ -19,11 +19,11 @@ print("Bienvenido a nuestra tienda")
 
 while True:
 
-    print("seleccione la opcion deseada")
+    print("\nseleccione la opcion deseada")
     print("1. agregar mercancia")
     print("2. Mostrar informacion de la mercancia")
     print("3. Mercar")
-    print("0. Salir")
+    print("0. Salir\n")
     opcion = int(input())
 
     if opcion == 1:
@@ -32,29 +32,26 @@ while True:
         nombre = input()
         print("Ingrese el precio: ")
         precio  = float(input())
-        print("Ingrese la cantidad del producto: ")
-        cantidad = int(input())
         codigo = int(input("ingrese el codigo: "))
-
-        tienda  = Tienda(nombre, precio, cantidad, codigo)
+        tienda  = Tienda(nombre, precio, codigo)
         lista_tienda.append(tienda)
         print("mercancia entregada correctamente")
     
     elif opcion == 2:
         numero_producto = len(lista_tienda)
-        print("El numero de productos es ", numero_producto)
+        print("\nEl numero de productos es ", numero_producto)
         for estudiante in lista_tienda:
             print("--------Productos--------")
-            print("Nombre - Precio - Cantidad")
-            print(tienda.nombre, "-", tienda.precio, "-", tienda.cantidad)
+            print("Nombre - Precio - Codigo")
+            print(tienda.nombre, "-", f"{tienda.precio:.0f}", "$", tienda.codigo)
     elif opcion == 3:
-        codigo_producto = int(input("ingrese el codigo del producto que quiere vender"))
+        codigo_producto = int(input("ingrese el codigo del producto que quieres comprar: "))
         
         existe = False
         for producto in lista_tienda:
             if tienda.codigo == codigo_producto:
-                cantidad_venta = int(input("cuanto desea vender: "))
-                tienda.vender(cantidad_venta)
+                presupuesto_usuario = int(input("cuanto dinero traes: "))
+                tienda.vender(presupuesto_usuario)
                 existe = True
                 break
 
@@ -67,3 +64,4 @@ while True:
 
     else:
         print("opcion no valida")
+
