@@ -5,12 +5,14 @@ class Tienda:
         self.codigo = codigo
     
     def vender(self, presupuesto_usuario):
-        if presupuesto_usuario > precio:
+        if presupuesto_usuario >= self.precio:
             presupuesto_usuario -= self.precio
-            print("producto vendido con exito")
-            print("te devolvemos ", f"{presupuesto_usuario:.0f}", "$ pesos")
+            print("Producto vendido con exito")
+            print("Te devolvemos ", f"{presupuesto_usuario:.0f}", "$ pesos")
+            return presupuesto_usuario
         else:
-            print("no tienes suficiente dinero")
+            print("No tienes suficiente dinero")
+            return presupuesto_usuario
 
 
 lista_tienda = []
@@ -19,8 +21,8 @@ print("Bienvenido a nuestra tienda")
 
 while True:
 
-    print("\nseleccione la opcion deseada")
-    print("1. agregar mercancia")
+    print("\nSeleccione la opcion deseada")
+    print("1. Agregar mercancia")
     print("2. Mostrar informacion de la mercancia")
     print("3. Mercar")
     print("0. Salir\n")
@@ -40,23 +42,27 @@ while True:
     elif opcion == 2:
         numero_producto = len(lista_tienda)
         print("\nEl numero de productos es ", numero_producto)
-        for estudiante in lista_tienda:
+        for producto in lista_tienda:
             print("--------Productos--------")
             print("Nombre - Precio - Codigo")
-            print(tienda.nombre, "-", f"{tienda.precio:.0f}", "$", tienda.codigo)
+            print(producto.nombre, "-", f"{producto.precio:.0f}", "$", producto.codigo)
     elif opcion == 3:
-        codigo_producto = int(input("ingrese el codigo del producto que quieres comprar: "))
-        
-        existe = False
-        for producto in lista_tienda:
-            if tienda.codigo == codigo_producto:
-                presupuesto_usuario = int(input("cuanto dinero traes: "))
-                tienda.vender(presupuesto_usuario)
-                existe = True
-                break
+        nuevo_dinero = int(input("ingrese su presupuesto: "))
 
-        if existe == False:
-            print("producto no existente..")
+        respuesta = "si"
+        while respuesta.lower() == "si":
+            codigo_producto = int(input("ingrese el codigo del producto que quieres comprar: "))
+            existe = False
+            for venta in lista_tienda:
+                if venta.codigo == codigo_producto:
+                    nuevo_dinero = venta.vender(nuevo_dinero)                
+                    existe = True
+                    break
+            if existe == False:
+                print("producto no encontrado")
+            
+            if nuevo_dinero > 0:
+                respuesta = input("Quieres seguir comprando? (si/no): ")
 
     elif opcion == 0:
         print("hasta luego")

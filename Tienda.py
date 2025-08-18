@@ -57,9 +57,11 @@ while True:
                 tienda.vender(cantidad_venta)
                 existe = True
                 break
+        
 
         if existe == False:
             print("producto no existente..")
+        
 
     elif opcion == 0:
         print("hasta luego")
