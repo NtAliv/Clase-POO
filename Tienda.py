@@ -30,13 +30,13 @@ while True:
 
         print("Ingrese el nombre del producto: ")
         nombre = input()
-        print("Ingrese la cantidad del producto: ")
-        cantidad = int(input())
         print("Ingrese el precio: ")
         precio  = float(input())
+        print("Ingrese la cantidad del producto: ")
+        cantidad = int(input())
         codigo = int(input("ingrese el codigo: "))
 
-        tienda  = Tienda(nombre, cantidad, precio, codigo)
+        tienda  = Tienda(nombre, precio, cantidad, codigo)
         lista_tienda.append(tienda)
         print("mercancia entregada correctamente")
     
@@ -57,9 +57,11 @@ while True:
                 tienda.vender(cantidad_venta)
                 existe = True
                 break
+        
 
         if existe == False:
             print("producto no existente..")
+        
 
     elif opcion == 0:
         print("hasta luego")
