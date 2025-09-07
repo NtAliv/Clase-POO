@@ -57,7 +57,6 @@ while True:
                 if venta.codigo == codigo_producto:
                     nuevo_dinero = venta.vender(nuevo_dinero)                
                     existe = True
-                    break
             if existe == False:
                 print("producto no encontrado")
             
