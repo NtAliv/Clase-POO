@@ -1,0 +1,3 @@
+ABC123, Toyota, 10000, Particular, 1000.0
+XYZ789, Volvo, 25000, Camion, 3750.0
+MNO456, Yamaha, 5000, Moto, 250.0
